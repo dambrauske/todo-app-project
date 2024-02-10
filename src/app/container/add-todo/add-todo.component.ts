@@ -9,13 +9,14 @@ import { TodoItem } from '../../models/models';
   styleUrl: './add-todo.component.css',
 })
 export class AddTodoComponent {
-  
   @Output()
-  newTodoItem: EventEmitter<string> = new EventEmitter<string>()
+  newTodoItem: EventEmitter<string> = new EventEmitter<string>();
 
-  addTodo(newItem: string) {
-    this.newTodoItem.emit(newItem)
-    console.log(newItem);
+  addTodo(toDoInput: HTMLInputElement) {
+    const newItem = toDoInput.value.trim();
+    if (newItem) {
+      this.newTodoItem.emit(newItem);
+      toDoInput.value = ''
+    }
   }
-
 }

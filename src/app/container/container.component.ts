@@ -11,8 +11,10 @@ import { TodoItem } from '../models/models';
   imports: [TodoListComponent, AddTodoComponent],
 })
 export class ContainerComponent {
-  
   allToDoItems: TodoItem[] = [];
+  activeItems: TodoItem[] = [];
+  completedItems: TodoItem[] = [];
+
   handleNewToDo(newItem: string) {
     const newToDo: TodoItem = {
       id: Date.now(),
@@ -21,6 +23,18 @@ export class ContainerComponent {
     };
     this.allToDoItems.push(newToDo);
     console.log(this.allToDoItems);
+    this.updateActiveItems()
   }
 
+  updateCompletedItems() {
+    this.completedItems = this.allToDoItems.filter(
+      (item) => item.completed === true
+    );
+  }
+
+  updateActiveItems() {
+    this.activeItems = this.allToDoItems.filter(
+      (item) => item.completed === false
+    );
+  }
 }

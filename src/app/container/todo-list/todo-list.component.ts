@@ -10,6 +10,7 @@ import { TodoItem } from '../../models/models';
     imports: [TodoItemComponent]
 })
 export class TodoListComponent {
+    @Input()
+    activeItems: TodoItem[] = []
 
-    
 }

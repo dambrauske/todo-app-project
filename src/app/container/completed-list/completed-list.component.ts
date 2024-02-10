@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { TodoItem } from '../../models/models';
 
 @Component({
   selector: 'app-completed-list',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './completed-list.component.css'
 })
 export class CompletedListComponent {
+
+ 
 
 }
