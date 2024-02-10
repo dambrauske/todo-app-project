@@ -1,4 +1,9 @@
 <div class="flex justify-center items-center py-4">
-    <input type="text" class="outline-none bg-slate-100 py-1 px-4 w-3/4 lg:w-2/4" placeholder="What needs to be done?">
-    <button class="bg-emerald-100 px-4 py-1 text-slate-800">Add</button>
+  <input
+    type="text"
+    class="outline-none bg-slate-100 py-1 px-4 w-3/4 lg:w-2/4"
+    placeholder="What needs to be done?"
+    #todoInput
+  />
+  <button class="bg-emerald-100 px-4 py-1 text-slate-800" (click)="addTodo(todoInput.value)">Add</button>
 </div>
