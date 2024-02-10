@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { AddTodoComponent } from './add-todo/add-todo.component';
 import { TodoItem } from '../models/models';
@@ -15,6 +15,8 @@ export class ContainerComponent {
   activeItems: TodoItem[] = [];
   completedItems: TodoItem[] = [];
 
+  idToDelete!: number;
+
   handleNewToDo(newItem: string) {
     const newToDo: TodoItem = {
       id: Date.now(),
@@ -23,7 +25,15 @@ export class ContainerComponent {
     };
     this.allToDoItems.push(newToDo);
     console.log(this.allToDoItems);
-    this.updateActiveItems()
+    this.updateActiveItems();
+  }
+
+  handleDeleteToDo(id: number) {
+    console.log('handleDeleteToDo from container', id);
+    this.allToDoItems = this.allToDoItems.filter((item) => item.id !== id);
+    console.log(this.allToDoItems);
+    this.updateActiveItems();
+    this.updateCompletedItems();
   }
 
   updateCompletedItems() {
