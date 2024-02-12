@@ -6,7 +6,7 @@ import { TodoItem } from '../../models/models';
   standalone: true,
   imports: [],
   templateUrl: './todo-item.component.html',
-  styleUrl: './todo-item.component.css'
+  styleUrl: './todo-item.component.css',
 })
 export class TodoItemComponent {
   @Input()
@@ -16,13 +16,21 @@ export class TodoItemComponent {
   idToDelete!: number;
 
   @Output()
-  deleteTodoId: EventEmitter<number> = new EventEmitter<number>()
+  idToCompleted!: number;
+
+  @Output()
+  deleteTodoId: EventEmitter<number> = new EventEmitter<number>();
+
+  @Output()
+  completedTodoId: EventEmitter<number> = new EventEmitter<number>();
 
   sendItemToDelete(item: TodoItem) {
-    console.log(item);
-    this.idToDelete = item.id
-    this.deleteTodoId.emit(this.idToDelete)
-    console.log(this.idToDelete);
+    this.idToDelete = item.id;
+    this.deleteTodoId.emit(this.idToDelete);
   }
 
+  sentItemToCompleted(item: TodoItem) {
+    this.idToCompleted = item.id;
+    this.completedTodoId.emit(this.idToCompleted)
+  }
 }

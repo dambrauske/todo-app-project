@@ -2,14 +2,14 @@ import { Component, Input } from '@angular/core';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { AddTodoComponent } from './add-todo/add-todo.component';
 import { TodoItem } from '../models/models';
-import { CompletedListComponent } from "./completed-list/completed-list.component";
+import { CompletedListComponent } from './completed-list/completed-list.component';
 
 @Component({
-    selector: 'app-container',
-    standalone: true,
-    templateUrl: './container.component.html',
-    styleUrl: './container.component.css',
-    imports: [TodoListComponent, AddTodoComponent, CompletedListComponent]
+  selector: 'app-container',
+  standalone: true,
+  templateUrl: './container.component.html',
+  styleUrl: './container.component.css',
+  imports: [TodoListComponent, AddTodoComponent, CompletedListComponent],
 })
 export class ContainerComponent {
   allToDoItems: TodoItem[] = [];
@@ -25,14 +25,20 @@ export class ContainerComponent {
       completed: false,
     };
     this.allToDoItems.push(newToDo);
-    console.log(this.allToDoItems);
     this.updateActiveItems();
   }
 
   handleDeleteToDo(id: number) {
-    console.log('handleDeleteToDo from container', id);
     this.allToDoItems = this.allToDoItems.filter((item) => item.id !== id);
-    console.log(this.allToDoItems);
+    this.updateActiveItems();
+    this.updateCompletedItems();
+  }
+
+  handleCompleteToDo(id: number) {
+    const index = this.allToDoItems.findIndex((item) => item.id === id);
+    if (index !== -1) {
+      this.allToDoItems[index].completed = true;
+    }
     this.updateActiveItems();
     this.updateCompletedItems();
   }

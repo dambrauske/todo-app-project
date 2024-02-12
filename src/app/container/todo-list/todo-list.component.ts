@@ -16,8 +16,14 @@ export class TodoListComponent {
   @Output()
   deleteToDoId: EventEmitter<number> = new EventEmitter<number>();
 
+  @Output()
+  completedTodoId: EventEmitter<number> = new EventEmitter<number>()
+
   handleDeleteToDo(id: number) {
-    console.log('handleDeleteToDo from list', id);
     this.deleteToDoId.emit(id);
+  }
+
+  handleCompletedToDo(id: number) {
+    this.completedTodoId.emit(id)
   }
 }

@@ -1,9 +1,14 @@
-  <app-add-todo (newTodoItem)="handleNewToDo($event)"></app-add-todo>
-  <div class="flex flex-col md:flex-row grow">
-    <app-todo-list
-      [activeItems]="activeItems"
-      (deleteToDoId)="handleDeleteToDo($event)"
-      class="grow"
-    ></app-todo-list>
-    <app-completed-list class="flex-grow"></app-completed-list>
-  </div>
+<app-add-todo (newTodoItem)="handleNewToDo($event)"></app-add-todo>
+<div class="flex flex-col md:flex-row grow">
+  <app-todo-list
+    [activeItems]="activeItems"
+    (deleteToDoId)="handleDeleteToDo($event)"
+    (completedTodoId)="handleCompleteToDo($event)"
+    class="grow"
+  ></app-todo-list>
+  <app-completed-list
+    [completedToDoItems]="completedItems"
+    (deleteCompletedToDoId)="handleDeleteToDo($event)"
+    class="flex-grow"
+  ></app-completed-list>
+</div>

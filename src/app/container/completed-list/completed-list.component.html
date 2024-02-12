@@ -2,4 +2,12 @@
   <h2 class="font-bold tracking-wider text-lg text-slate-700 py-4">
     Completed:
   </h2>
+
+  @for (item of completedToDoItems; track $index) {
+  <app-todo-item
+    class="w-full lg:w-2/3 xl:w-2/4"
+    [item]="item"
+    (deleteTodoId)="handleDeleteCompletedToDo($event)"
+  ></app-todo-item>
+  }
 </div>
