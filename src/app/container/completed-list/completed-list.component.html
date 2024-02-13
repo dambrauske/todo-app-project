@@ -3,7 +3,7 @@
     Completed:
   </h2>
 
-  @for (item of completedToDoItems; track $index) {
+  @for (item of (completedItems | async); track $index) {
   <app-todo-item
     class="w-full lg:w-2/3 xl:w-2/4"
     [item]="item"

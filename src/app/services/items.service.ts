@@ -47,17 +47,4 @@ export class ItemsService {
   getCompletedItems() {
     return this.allItems.pipe(map((allItems => allItems.filter(item => item.completed === true))))
   }
-
-  // handleDeleteToDo(id: number) {
-  //   this.allItems = this.allItems.filter((item) => item.id !== id);
-  // }
-
-  // handleCompleteToDo(id: number) {
-  //   const index = this.allItems.findIndex((item) => item.id === id);
-  //   if (index !== -1) {
-  //     this.allItems[index].completed = true;
-  //   }
-  // }
-
-  constructor() { }
 }
