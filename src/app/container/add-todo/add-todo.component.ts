@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { TodoItem } from '../../models/models';
+import { ItemsService } from '../../services/items.service';
 
 @Component({
   selector: 'app-add-todo',
@@ -9,14 +10,14 @@ import { TodoItem } from '../../models/models';
   styleUrl: './add-todo.component.css',
 })
 export class AddTodoComponent {
-  @Output()
-  newTodoItem: EventEmitter<string> = new EventEmitter<string>();
+ 
+  constructor(private itemsService: ItemsService) {}
 
   addTodo(toDoInput: HTMLInputElement) {
-    const newItem = toDoInput.value.trim();
-    if (newItem) {
-      this.newTodoItem.emit(newItem);
+    const item = toDoInput.value.trim();
+    if (item) {
+      this.itemsService.addItem(item);
       toDoInput.value = ''
-    }
+    }    
   }
 }

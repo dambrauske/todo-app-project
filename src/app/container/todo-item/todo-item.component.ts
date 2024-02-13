@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TodoItem } from '../../models/models';
 import { NgClass } from '@angular/common';
+import { ItemsService } from '../../services/items.service';
 
 @Component({
   selector: 'app-todo-item',
@@ -15,26 +16,14 @@ export class TodoItemComponent {
 
   showIcon: boolean = false;
 
-  @Output()
-  idToDelete!: number;
+  constructor(private itemsService: ItemsService) {}
 
-  @Output()
-  idToCompleted!: number;
-
-  @Output()
-  deleteTodoId: EventEmitter<number> = new EventEmitter<number>();
-
-  @Output()
-  completedTodoId: EventEmitter<number> = new EventEmitter<number>();
-
-  sendItemToDelete(item: TodoItem) {
-    this.idToDelete = item.id;
-    this.deleteTodoId.emit(this.idToDelete);
+  deleteItem(item: TodoItem) {
+    this.itemsService.deleteItem(item.id);  
   }
 
-  sentItemToCompleted(item: TodoItem) {
-    this.idToCompleted = item.id;
-    this.completedTodoId.emit(this.idToCompleted);
+  completeItem(item: TodoItem) {
+    this.itemsService.completeItem(item.id);
   }
 
   handleHoverOnIcon(item: TodoItem) {
@@ -44,4 +33,5 @@ export class TodoItemComponent {
       return 'fas fa-check';
     }
   }
+
 }

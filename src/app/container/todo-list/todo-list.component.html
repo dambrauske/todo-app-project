@@ -3,12 +3,11 @@
     To do:
   </h2>
 
-  @for (item of activeItems; track $index) {
+  @for (item of (activeItems | async); track $index) {
   <app-todo-item
     class="w-full lg:w-2/3 xl:w-2/4"
     [item]="item"
-    (deleteTodoId)="handleDeleteToDo($event)"
-    (completedTodoId)="handleCompletedToDo($event)"
   ></app-todo-item>
   }
+
 </div>

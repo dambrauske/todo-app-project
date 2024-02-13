@@ -1,6 +1,6 @@
 <div class="flex justify-between rounded-md bg-white p-2 my-1">
   <button
-    (click)="sentItemToCompleted(item)"
+    (click)="completeItem(item)"
     [ngClass]="
       item.completed ? 'bg-emerald-100' : 'border-emerald-100 border-2'
     "
@@ -26,7 +26,7 @@
   </div>
   <div class="flex gap-2">
     <button>edit</button>
-    <button (click)="sendItemToDelete(item)">
+    <button (click)="deleteItem(item)">
       <i class="fas fa-trash-alt text-red-400"></i>
     </button>
   </div>

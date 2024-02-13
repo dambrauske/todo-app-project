@@ -1,29 +1,22 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 import { TodoItem } from '../../models/models';
+import { ItemsService } from '../../services/items.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css',
-  imports: [TodoItemComponent],
+  imports: [TodoItemComponent, AsyncPipe],
 })
 export class TodoListComponent {
-  @Input()
-  activeItems: TodoItem[] = [];
+  activeItems = this.itemsService.getActiveItems()
 
-  @Output()
-  deleteToDoId: EventEmitter<number> = new EventEmitter<number>();
-
-  @Output()
-  completedTodoId: EventEmitter<number> = new EventEmitter<number>()
-
-  handleDeleteToDo(id: number) {
-    this.deleteToDoId.emit(id);
-  }
-
-  handleCompletedToDo(id: number) {
-    this.completedTodoId.emit(id)
+  constructor(private itemsService: ItemsService) {
+    this.activeItems.subscribe(items => {
+      console.warn('items from subscription', items)
+    })
   }
 }
