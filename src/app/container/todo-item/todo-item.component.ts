@@ -1,16 +1,19 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TodoItem } from '../../models/models';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-todo-item',
   standalone: true,
-  imports: [],
+  imports: [NgClass],
   templateUrl: './todo-item.component.html',
   styleUrl: './todo-item.component.css',
 })
 export class TodoItemComponent {
   @Input()
   item!: TodoItem;
+
+  showIcon: boolean = false;
 
   @Output()
   idToDelete!: number;
@@ -31,6 +34,14 @@ export class TodoItemComponent {
 
   sentItemToCompleted(item: TodoItem) {
     this.idToCompleted = item.id;
-    this.completedTodoId.emit(this.idToCompleted)
+    this.completedTodoId.emit(this.idToCompleted);
+  }
+
+  handleHoverOnIcon(item: TodoItem) {
+    if (!item.completed) {
+      return this.showIcon ? 'fas fa-check' : 'hidden';
+    } else {
+      return 'fas fa-check';
+    }
   }
 }

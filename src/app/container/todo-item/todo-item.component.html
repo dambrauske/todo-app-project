@@ -1,10 +1,33 @@
-<div class="flex justify-between rounded-md border px-4 py-1">
-  <button (click)="sentItemToCompleted(item)">done</button>
+<div class="flex justify-between rounded-md bg-white p-2 my-1">
+  <button
+    (click)="sentItemToCompleted(item)"
+    [ngClass]="
+      item.completed ? 'bg-emerald-100' : 'border-emerald-100 border-2'
+    "
+    (mouseenter)="showIcon = true"
+    (mouseleave)="showIcon = false"
+    class="w-6 h-6 flex justify-center items-center"
+  >
+    <i
+      [ngClass]="item.completed ? 'text-slate-800 fas fa-check' : 'hidden'"
+      [ngClass]="handleHoverOnIcon(item)"
+    ></i>
+  </button>
   <div>
-    <div>{{ item.title }}</div>
+    <div
+      [ngClass]="
+        item.completed === true
+          ? 'line-through text-slate-400'
+          : 'text-slate-800'
+      "
+    >
+      {{ item.title }}
+    </div>
   </div>
   <div class="flex gap-2">
     <button>edit</button>
-    <button (click)="sendItemToDelete(item)">delete</button>
+    <button (click)="sendItemToDelete(item)">
+      <i class="fas fa-trash-alt text-red-400"></i>
+    </button>
   </div>
 </div>
