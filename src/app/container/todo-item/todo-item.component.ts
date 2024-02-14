@@ -11,7 +11,7 @@ import { ItemsService } from '../../services/items.service';
   styleUrl: './todo-item.component.css',
 })
 export class TodoItemComponent {
-    constructor(private itemsService: ItemsService) {}
+  constructor(private itemsService: ItemsService) {}
 
   @Input()
   item!: TodoItem;
@@ -19,7 +19,7 @@ export class TodoItemComponent {
   showIcon: boolean = false;
 
   deleteItem(item: TodoItem) {
-    this.itemsService.deleteItem(item.id);  
+    this.itemsService.deleteItem(item.id);
   }
 
   completeItem(item: TodoItem) {
@@ -27,13 +27,13 @@ export class TodoItemComponent {
   }
 
   handleModal() {
-    this.itemsService.changeModalState()
+    this.itemsService.changeModalState();
   }
 
   editItem(item: TodoItem) {
-    this.itemsService.editeThisItem(item)
+    this.itemsService.selectThisItem(item);
+    this.handleModal();
   }
-
 
   handleHoverOnIcon(item: TodoItem) {
     if (!item.completed) {
@@ -42,5 +42,4 @@ export class TodoItemComponent {
       return 'fas fa-check';
     }
   }
-
 }

@@ -25,7 +25,7 @@
     </div>
   </div>
   <div class="flex gap-4">
-    <button (click)="handleModal()" (click)="editItem(item)">
+    <button (click)="editItem(item)">
       <i [ngClass]="!item.completed ? 'fas fa-pen text-slate-800' : null"></i>
     </button>
     <button (click)="deleteItem(item)">

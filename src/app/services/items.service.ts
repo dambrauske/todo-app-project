@@ -8,7 +8,7 @@ import { BehaviorSubject, filter, map } from 'rxjs';
 export class ItemsService {
   private allItems = new BehaviorSubject<TodoItem[]>([]);
   editModalOpen = new BehaviorSubject<boolean>(false);
-  editedItem = new BehaviorSubject<TodoItem | undefined>(undefined);
+  selectedItem = new BehaviorSubject<TodoItem | undefined>(undefined);
 
   addItem(item: string) {
     const currentItems = this.allItems.value;
@@ -41,24 +41,23 @@ export class ItemsService {
 
   changeModalState() {
     const currentState = this.editModalOpen.next(!this.editModalOpen.value);
-    console.log(this.editModalOpen.value);
   }
 
-  editeThisItem(item: TodoItem) {
-    this.editedItem.next(item);
+  selectThisItem(item: TodoItem) {
+    this.selectedItem.next(item);
   }
 
   updateAndSaveItem(id: number, newTitle: string) {
     console.log('newTitle', newTitle);
-    
-    const currentItems = this.allItems.value
+
+    const currentItems = this.allItems.value;
     const updatedItems = currentItems.map((item) => {
       if (item.id === id) {
-        return {...item, title: newTitle}
+        return { ...item, title: newTitle };
       }
-      return item
-    })
-    this.allItems.next(updatedItems)
+      return item;
+    });
+    this.allItems.next(updatedItems);
   }
 
   getActiveItems() {
