@@ -18,5 +18,9 @@ export class EditModalComponent {
     this.itemsService.changeModalState()
   }
 
-  saveChanges() {}
+  saveChanges(id: number, input: HTMLInputElement) {
+    const inputValue = input.value.trim()
+    this.itemsService.updateAndSaveItem(id, inputValue)
+    this.closeModal()
+  }
 }

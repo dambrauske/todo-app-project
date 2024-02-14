@@ -11,12 +11,12 @@ import { ItemsService } from '../../services/items.service';
   styleUrl: './todo-item.component.css',
 })
 export class TodoItemComponent {
+    constructor(private itemsService: ItemsService) {}
+
   @Input()
   item!: TodoItem;
 
   showIcon: boolean = false;
-
-  constructor(private itemsService: ItemsService) {}
 
   deleteItem(item: TodoItem) {
     this.itemsService.deleteItem(item.id);  
@@ -29,6 +29,11 @@ export class TodoItemComponent {
   handleModal() {
     this.itemsService.changeModalState()
   }
+
+  editItem(item: TodoItem) {
+    this.itemsService.editeThisItem(item)
+  }
+
 
   handleHoverOnIcon(item: TodoItem) {
     if (!item.completed) {

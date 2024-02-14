@@ -12,9 +12,7 @@ import { AsyncPipe } from '@angular/common';
   imports: [TodoItemComponent, AsyncPipe],
 })
 export class TodoListComponent {
-  activeItems = this.itemsService.getActiveItems()
+  activeItems = this.itemsService.getActiveItems();
 
-  constructor(private itemsService: ItemsService) {
-    
-  }
+  constructor(private itemsService: ItemsService) {}
 }
