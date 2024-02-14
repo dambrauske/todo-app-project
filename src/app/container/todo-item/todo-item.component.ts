@@ -26,6 +26,10 @@ export class TodoItemComponent {
     this.itemsService.completeItem(item.id);
   }
 
+  handleModal() {
+    this.itemsService.changeModalState()
+  }
+
   handleHoverOnIcon(item: TodoItem) {
     if (!item.completed) {
       return this.showIcon ? 'fas fa-check' : 'hidden';

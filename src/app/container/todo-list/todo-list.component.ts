@@ -15,8 +15,6 @@ export class TodoListComponent {
   activeItems = this.itemsService.getActiveItems()
 
   constructor(private itemsService: ItemsService) {
-    this.activeItems.subscribe(items => {
-      console.warn('items from subscription', items)
-    })
+    
   }
 }

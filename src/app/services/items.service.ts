@@ -3,14 +3,14 @@ import { TodoItem } from '../models/models';
 import { BehaviorSubject, filter, map } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ItemsService {
-
   private allItems = new BehaviorSubject<TodoItem[]>([]);
+  editModalOpen = new BehaviorSubject<boolean>(false)
 
   addItem(item: string) {
-    const currentItems = this.allItems.value
+    const currentItems = this.allItems.value;
 
     const newItem: TodoItem = {
       id: Date.now(),
@@ -18,33 +18,42 @@ export class ItemsService {
       completed: false,
     };
 
-    this.allItems.next([...currentItems, newItem])
-
-    console.log(this.allItems);
+    this.allItems.next([...currentItems, newItem]);
   }
 
   deleteItem(id: number) {
-    const currentItems = this.allItems.value
-    const updatedItems = currentItems.filter(item => item.id !== id)
-    this.allItems.next(updatedItems)
+    const currentItems = this.allItems.value;
+    const updatedItems = currentItems.filter((item) => item.id !== id);
+    this.allItems.next(updatedItems);
   }
 
   completeItem(id: number) {
-    const currentItems = this.allItems.value
-    const updatedItems = currentItems.map(item => {
+    const currentItems = this.allItems.value;
+    const updatedItems = currentItems.map((item) => {
       if (item.id === id) {
-        return {...item, completed: true}
+        return { ...item, completed: true };
       }
-      return item
-    })
-    this.allItems.next(updatedItems)
+      return item;
+    });
+    this.allItems.next(updatedItems);
+  }
+
+
+  changeModalState() {
+    const currentState = 
+    this.editModalOpen.next(!this.editModalOpen.value)
+    console.log(this.editModalOpen.value);
   }
 
   getActiveItems() {
-    return this.allItems.pipe(map((allItems => allItems.filter(item => item.completed === false))))
+    return this.allItems.pipe(
+      map((allItems) => allItems.filter((item) => item.completed === false))
+    );
   }
 
   getCompletedItems() {
-    return this.allItems.pipe(map((allItems => allItems.filter(item => item.completed === true))))
+    return this.allItems.pipe(
+      map((allItems) => allItems.filter((item) => item.completed === true))
+    );
   }
 }

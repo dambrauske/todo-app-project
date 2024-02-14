@@ -1,0 +1,25 @@
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50"
+  [ngClass]="itemsService.editModalOpen.value === false ? 'hidden' : null"
+  >
+  <div
+    class="bg-slate-100 p-6 rounded-md shadow-xl flex flex-col gap-6 justify-center items-center w-3/4 md:w-2/4 xl:w-1/4"
+  >
+    <div class="text-lg font-semibold">Edit task</div>
+    <input type="text" placeholder="this is a task text" class="outline-none p-1 rounded-md"/>
+    <div class="flex justify-around gap-4">
+      <button
+        class="bg-red-400 hover:bg-red-500 text-slate-50 font-semibold py-2 px-4 rounded"
+        (click)="closeModal()"
+      >
+        Close
+      </button>
+      <button
+        class="bg-emerald-400 hover:bg-emerald-500 text-slate-50 font-semibold py-2 px-4 rounded"
+        (click)="saveChanges()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</div>
