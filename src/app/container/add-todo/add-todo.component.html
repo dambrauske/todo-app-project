@@ -4,6 +4,8 @@
     class="outline-none py-1 px-4 w-3/4 lg:w-2/4"
     placeholder="What needs to be done?"
     #todoInput
+    (keydown.enter)="addTodo(todoInput)"
+
   />
   <button
     class="bg-emerald-100 px-4 py-1 text-slate-800"
